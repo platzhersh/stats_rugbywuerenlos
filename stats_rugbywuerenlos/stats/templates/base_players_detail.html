@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block hero-unit %}
+
+<h1>{{player.get_name}}</h1>
+Position:<br/>
+Alter:<br/>
+Erfahrung:<br/>
+Punkte: {{player.get_points}}<br/>
+
+{% endblock hero-unit %}
+
+
+{% block content-title %}Points{% endblock %}
+{% block content %}
+blabla
+{% endblock content %}

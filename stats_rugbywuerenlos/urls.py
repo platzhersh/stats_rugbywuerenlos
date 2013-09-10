@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # (r'^test_project/', include('test_project.foo.urls')),
     (r'^$', TemplateView.as_view(template_name='base.html')),
     ('^admin/', include(admin.site.urls)),
-    ('^players', 'stats_rugbywuerenlos.views.listPlayers'),
-    ('^games', 'stats_rugbywuerenlos.views.listGames'),
+    ('^players/(?P<playerID>\w+)','stats_rugbywuerenlos.views.listPlayersDetail'),
+    ('^players$', 'stats_rugbywuerenlos.views.listPlayers'),
+    ('^games$', 'stats_rugbywuerenlos.views.listGames'),
 
 )

@@ -15,6 +15,9 @@ class Player(models.Model):
     entry = models.DateField(blank=True,null=True)
     active = models.BooleanField(default=True)
 
+    def get_id(self):
+      return self.firstName+self.lastName
+    
     def get_name(self):
       return self.firstName+' '+self.lastName
     get_name.admin_order_field = 'firstName'

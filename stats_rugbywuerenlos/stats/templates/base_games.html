@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content-title %}Games{% endblock content-title %}
+
+{% block content %}
+
+  {% if page_content %}
+  <ul>
+    {% for game in page_content %}
+    <li>{{game}}</li>
+    {% endfor %}
+
+  {% else %}
+    <li>no games found</li>
+  {% endif %}
+  </ul>
+{% endblock content %}

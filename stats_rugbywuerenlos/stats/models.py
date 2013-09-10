@@ -17,13 +17,17 @@ class Player(models.Model):
 
     def get_name(self):
       return self.firstName+' '+self.lastName
+    get_name.admin_order_field = 'firstName'
 
-    def get_points(self):
+    def get_pointsInt(self):
       p = Point.objects.filter(player=self)
       sum = 0
       for point in p:
         sum += point.pointType.value
-      return str(sum)
+      return sum
+
+    def get_points(self):
+      return str(self.get_pointsInt())
     
     get_points.short_description = 'Points made'
 
@@ -34,6 +38,7 @@ class Game(models.Model):
     season = models.ForeignKey(Season,verbose_name="Season")
     opponent = models.CharField(max_length=50,verbose_name="Opponent")
     location = models.CharField(max_length=50,verbose_name="Location")
+    homegame = models.BooleanField(default=False,verbose_name="Homegame?")
     pointsO = models.IntegerField(verbose_name="Points received",blank=True,null=True)
     date = models.DateTimeField(verbose_name="KickOff")
     mom = models.ForeignKey(Player,verbose_name="Man of the Match",blank=True,null=True,related_name='mom')

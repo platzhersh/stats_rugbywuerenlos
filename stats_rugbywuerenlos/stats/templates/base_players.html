@@ -1,18 +1,34 @@
 {% extends "base.html" %}
 
+{% block breadcrumb %}
+<li><a href="/players">Players</a></li>
+{% endblock %}
+
+
 {% block content-title %}Players{% endblock content-title %}
 
 {% block content %}
 
   {% if page_content %}
-  <ul>
-    {% for player in page_content %}
-    <li>{{player.get_name}}</li>
-    {% endfor %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Punkte</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for player in page_content %}
+        <tr>
+          <td><a href="/players/{{player.id}}">{{player.get_name}}</a></td>
+          <td>{{player.get_points}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
 
+  </table>
   {% else %}
-    <li>no playerss found</li>
+    no players found
   {% endif %}
-  </ul>
 
 {% endblock content %}

@@ -1,14 +1,29 @@
 {% extends "base.html" %}
 
-{% block hero-unit %}
+{% block breadcrumb %}
+<li><a href="/players">Players</a></li>
+<li><a href="/players/{{player.id}}">{{player}}</a></li>
+{% endblock %}
 
-<h1>{{player.get_name}}</h1>
+
+{% block jumbotron-title %}<h1>{{player.get_name}}</h1>{% endblock %}
+
+{% block jumbotron-img %}
+
+{% if player.photo %}
+<div class="pull-right">
+<img src="/media/{{player.photo}}" alt="{{player.get_name}}">
+</div>
+{% endif %}
+
+{% endblock jumbotron-img %}
+
+{% block jumbotron %}
 Position:<br/>
 Alter:<br/>
 Erfahrung:<br/>
 Punkte: {{player.get_points}}<br/>
-
-{% endblock hero-unit %}
+{% endblock jumbotron %}
 
 
 {% block content-title %}Points{% endblock %}

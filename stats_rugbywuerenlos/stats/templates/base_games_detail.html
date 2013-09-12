@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<li><a href="/games">Games</a></li>
+<li><a href="/games/{{game.id}}">{{game}}</a></li>
+{% endblock %}
+
+{% block jumbotron-title %}<h1>RCW vs {{game.opponent}}</h1>{% endblock %}
+
+{% block jumbotron %}
+Ort: {{game.location}}<br/>
+Kickoff: {{game.date}}<br/>
+Man of the Match: <a href="/players/{{game.mom.id}}">{{game.mom.get_name}}</a><br/>
+Tackle of the Match: <a href="/players/{{game.tom.id}}">{{game.tom.get_name}}</a>
+{% endblock jumbotron %}
+
+
+{% block content-title %}Points{% endblock %}
+{% block content %}
+<ul>
+{% for p in points %}
+  <li>{{p.pointType.name}} - <a href="/players/{{p.player.id}}">{{p.player.get_name}}</a></li>
+{% endfor %}
+</ul>
+{% endblock content %}

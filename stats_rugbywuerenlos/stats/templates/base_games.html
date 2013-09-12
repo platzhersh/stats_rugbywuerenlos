@@ -1,17 +1,41 @@
 {% extends "base.html" %}
 
+{% block breadcrumb %}
+<li><a href="/games">Games</a></li>
+{% endblock %}
+
 {% block content-title %}Games{% endblock content-title %}
 
 {% block content %}
 
   {% if page_content %}
-  <ul>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Datum</th>
+      <th>Gegner</th>
+      <th>Ort</th>
+      <th>Score (RCW:Gegner)</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for game in page_content %}
-    <li>{{game}}</li>
+    <tr>
+      <td>{{game.date}}</td>
+      <td><a href="/games/{{game.id}}">{{game.opponent}}</a></td>
+      <td>{{game.location}}</td>
+      {% if game.pointsO %}
+        <td>{{game.get_points}}:{{game.pointsO}}</td>
+      {% else %}
+        <td>--</td>
+      {% endif %}
+    </tr>
     {% endfor %}
 
+  </tbody>
+  </table>
+
   {% else %}
-    <li>no games found</li>
+    no games found
   {% endif %}
-  </ul>
 {% endblock content %}

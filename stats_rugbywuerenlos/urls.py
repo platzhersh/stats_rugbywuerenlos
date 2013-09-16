@@ -15,5 +15,7 @@ urlpatterns = patterns('',
 
     ('^games/(?P<gameID>\d+)','stats_rugbywuerenlos.views.listGamesDetail'),
     ('^games', 'stats_rugbywuerenlos.views.listGames'),
+    ('^auth/login', 'stats_rugbywuerenlos.views.login'),
+    ('^auth', 'stats_rugbywuerenlos.views.auth'),
 
 )

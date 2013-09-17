@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 
+{% block breadcrumb %}
+<li><a href="/auth/">Members</a></li>
+<li><a href="/auth/profile/">Profil</a></li>
+{% endblock %}
+
 {% block jumbotron-title %}
 Profil
 {% endblock %}
 
 {% block jumbotron %}
-blabla
+<p>blabla</p>
+<p><a href="/auth/logout/" class="btn btn-default">Logout</a></p>
+
 {% endblock %}
 ~                       

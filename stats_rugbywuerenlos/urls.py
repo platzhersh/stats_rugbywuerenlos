@@ -16,7 +16,8 @@ urlpatterns = patterns('',
     ('^games/(?P<gameID>\d+)','stats_rugbywuerenlos.views.listGamesDetail'),
     ('^games', 'stats_rugbywuerenlos.views.listGames'),
     ('^auth/profile/$', 'stats_rugbywuerenlos.views.profile'),
-    ('^auth/login/$', 'django.contrib.auth.views.login', {'template_name':'base_login.html'}),
-    ('^auth', 'stats_rugbywuerenlos.views.auth'),
+    ('^auth/login/', 'django.contrib.auth.views.login', {'template_name':'base_login.html'}),
+    ('^auth/logout/', 'stats_rugbywuerenlos.views.logout_view'),
+#    ('^auth', 'stats_rugbywuerenlos.views.auth'),
 
 )

@@ -52,7 +52,12 @@
             </li>-->
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/auth/login">Login</a></li>
+
+{% if user.is_authenticated %}
+            <li><a href="/auth/profile/">{{ user.username }}</a></li>
+{% else %}
+            <li><a href="/auth/profile/">Login</a></li>
+{% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>

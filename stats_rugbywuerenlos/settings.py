@@ -107,3 +107,5 @@ ALLOWED_HOSTS = '*'
 # Override the server-derived value of SCRIPT_NAME 
 # See http://code.djangoproject.com/wiki/BackwardsIncompatibleChanges#lighttpdfastcgiandothers
 FORCE_SCRIPT_NAME = ''
+
+LOGIN_REDIRECT_URL = '/auth/profile'

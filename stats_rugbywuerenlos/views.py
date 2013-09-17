@@ -28,6 +28,5 @@ def auth(request):
   html = "<html><body>You are in!</body></html>"
   return HttpResponse(html)
 
-def login(request):
-  html=  "<html><body>Login</body></html>"
-  return HttpResponse(html)
+def profile(request):
+  return render_to_response('user/profile.html', {'request':request})

@@ -1,32 +1,80 @@
 {% extends "base.html" %}
 
+<!-- <head> -->
+{% block document-head %}
+
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Tries', {{player.get_tries}}],
+          ['Conversions', {{player.get_conversions}}],
+          ['Penalties', {{player.get_penalties}}],
+          ['Drop Goals', {{player.get_dropgoals}}],
+        ]);
+
+        // Set chart options
+        var options = {'title':'Points scored',
+                       'width':450,
+                       'height':400};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+{% endblock %}
+
+
+<!-- <body> -->
+
 {% block breadcrumb %}
 <li><a href="/players">Players</a></li>
 <li><a href="/players/{{player.id}}">{{player}}</a></li>
 {% endblock %}
 
+<div class="player_header">
 
-{% block jumbotron-title %}<h1>{{player.get_name}}</h1>{% endblock %}
+  <div class="player_photo">
+    {% block jumbotron-img %}
 
-{% block jumbotron-img %}
+      {% if player.photo %}
+        <img src="/media/{{player.photo}}" alt="{{player.get_name}}">
+      {% endif %}
 
-{% if player.photo %}
-<div class="pull-right">
-<img src="/media/{{player.photo}}" alt="{{player.get_name}}">
+    {% endblock jumbotron-img %}
+  </div>
+ 
+  <div class="player_name">
+    {% block jumbotron-title %}<h1>{{player.get_name}}</h1>{% endblock %}
+  </div>
+
+  <div class="player_info">
+    {% block jumbotron %}
+      Position: {{player.position}}<br/>
+      Punkte: {{player.get_points}}<br/>
+    {% endblock jumbotron %}
+  </div>
 </div>
-{% endif %}
-
-{% endblock jumbotron-img %}
-
-{% block jumbotron %}
-Position:<br/>
-Alter:<br/>
-Erfahrung:<br/>
-Punkte: {{player.get_points}}<br/>
-{% endblock jumbotron %}
 
 
 {% block content-title %}Points{% endblock %}
 {% block content %}
-blabla
+<div id="chart_div"></div>
 {% endblock content %}

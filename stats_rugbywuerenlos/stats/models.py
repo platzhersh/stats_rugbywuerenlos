@@ -12,6 +12,7 @@ class Player(models.Model):
     lastName = models.CharField(max_length=50)
     photo = models.ImageField(upload_to='players/',blank=True,null=True)
     birthdate = models.DateField(blank=True,null=True)
+    position = models.CharField(max_length=30,null=True)
     entry = models.DateField(blank=True,null=True)
     active = models.BooleanField(default=True)
 
@@ -33,6 +34,23 @@ class Player(models.Model):
       return str(self.get_pointsInt())
     
     get_points.short_description = 'Points made'
+
+    def get_tries(self):
+      points = Point.objects.filter(player=self)
+      tries = points.filter(pointType = PointType.objects.filter(name="Try"))
+      return tries.count()
+    def get_dropgoals(self):
+      points = Point.objects.filter(player=self)
+      dg = points.filter(pointType = PointType.objects.filter(name="Drop Goal"))
+      return dg.count()
+    def get_penalties(self):
+      points = Point.objects.filter(player=self)
+      pen = points.filter(pointType = PointType.objects.filter(name="Penalty"))
+      return pen.count()
+    def get_conversions(self):
+      points = Point.objects.filter(player=self)
+      conv = points.filter(pointType = PointType.objects.filter(name="Conversion"))
+      return conv.count()
 
     def __unicode__(self):
       return self.get_name()

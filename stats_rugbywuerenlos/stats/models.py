@@ -6,6 +6,11 @@ class Season(models.Model):
     def __unicode__(self):
       return str(self.start)+'/'+str(self.start+1)
 
+class Position(models.Model):
+    name = models.CharField(max_length=50)
+    
+    def __unicode__(self):
+      return self.name
 
 class Player(models.Model):
     firstName = models.CharField(max_length=50)
@@ -29,11 +34,16 @@ class Player(models.Model):
       for point in p:
         sum += point.pointType.value
       return sum
-
-    def get_points(self):
+    
+    @property
+    def points(self):
       return str(self.get_pointsInt())
     
-    get_points.short_description = 'Points made'
+#    points.short_description = 'Points made'
+    
+    @property
+    def tries(self):
+      return self.get_tries() 
 
     def get_tries(self):
       points = Point.objects.filter(player=self)
@@ -55,8 +65,29 @@ class Player(models.Model):
     def __unicode__(self):
       return self.get_name()
 
+class Location(models.Model):
+    name = models.CharField(max_length=120)
+    url = models.CharField(max_length=500, null = True)
+    def __unicode__(self):
+      return self.name
+
+class League(models.Model):
+    name = models.CharField(max_length=50)  
+    def __unicode__(self):
+      return self.name
+
+class Team(models.Model):
+    name = models.CharField(max_length=50)
+    website = models.CharField(max_length=200, null = True)
+    pitch = models.ForeignKey(Location)
+    league = models.ForeignKey(League)
+    def __unicode__(self):
+      return self.name
+
 class Game(models.Model):
     season = models.ForeignKey(Season,verbose_name="Season")
+    hostteam = models.ForeignKey(Team,verbose_name="Host",related_name="hostteam_set")
+    guestteam = models.ForeignKey(Team,verbose_name="Guest",related_name="guestteam_set")
     opponent = models.CharField(max_length=50,verbose_name="Opponent")
     location = models.CharField(max_length=50,verbose_name="Location")
     homegame = models.BooleanField(default=False,verbose_name="Homegame?")
@@ -75,7 +106,7 @@ class Game(models.Model):
     get_points.short_description = 'Points made'
 
     def __unicode__(self):
-      return self.opponent+' '+str(self.date)
+      return self.hostteam.name+' vs '+self.guestteam.name
 
 
 class PointType(models.Model):
@@ -92,3 +123,17 @@ class Point(models.Model):
 
     def __unicode__(self):
       return self.pointType.name+' by '+self.player.get_name()
+
+class CardType(models.Model):
+    name = models.CharField(max_length=50)
+    # TODO: create HEX field with colour
+    def __unicode__(self):
+      return self.name
+
+class Card(models.Model):
+    cardType = models.ForeignKey(CardType)
+    player = models.ForeignKey(Player)
+    game = models.ForeignKey(Game)
+
+    def __unicode__(self):
+      return self.cardType.name+" ("+self.player.get_name()+")"

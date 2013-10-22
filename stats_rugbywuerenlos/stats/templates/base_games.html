@@ -21,7 +21,7 @@
   <tbody>
     {% for game in page_content %}
     <tr>
-      <td>{{game.date}}</td>
+      <td>{{game.date|date:"d.m.Y, G:i"}}</td>
       <td><a href="/games/{{game.id}}">{{game.opponent}}</a></td>
       <td>{{game.location}}</td>
       {% if game.pointsO %}

@@ -20,4 +20,9 @@ urlpatterns = patterns('',
     ('^auth/logout/', 'stats_rugbywuerenlos.views.logout_view'),
 #    ('^auth', 'stats_rugbywuerenlos.views.auth'),
 
+    ('^REST/players/(?P<playerID>\d+)', 'stats_rugbywuerenlos.views.playersDetailJSON'),
+    ('^REST/players', 'stats_rugbywuerenlos.views.playersJSON'),
+    ('^REST/games', 'stats_rugbywuerenlos.views.gamesJSON'),
+    ('^REST/seasons', 'stats_rugbywuerenlos.views.seasonsJSON'),
+
 )

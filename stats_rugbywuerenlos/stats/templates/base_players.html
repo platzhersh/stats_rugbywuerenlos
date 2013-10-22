@@ -15,14 +15,22 @@
       <tr>
         <th>Name</th>
         <th>Punkte</th>
+        <th>Tries</th>
+        <th>Conv.</th>
+        <th>Pen.</th>
       </tr>
     </thead>
     <tbody>
       {% for player in page_content %}
+      {% if player.points != "0" %}
         <tr>
           <td><a href="/players/{{player.id}}">{{player.get_name}}</a></td>
-          <td>{{player.get_points}}</td>
+          <td>{{player.points}}</td>
+          <td>{{player.get_tries}}</td>
+          <td>{{player.get_conversions}}</td>
+          <td>{{player.get_penalties}}</td>
         </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
 

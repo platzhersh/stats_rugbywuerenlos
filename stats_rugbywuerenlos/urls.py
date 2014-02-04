@@ -20,9 +20,19 @@ urlpatterns = patterns('',
     ('^auth/logout/', 'stats_rugbywuerenlos.views.logout_view'),
 #    ('^auth', 'stats_rugbywuerenlos.views.auth'),
 
-    ('^REST/players/(?P<playerID>\d+)', 'stats_rugbywuerenlos.views.playersDetailJSON'),
+    ('^jsonp/games', 'stats_rugbywuerenlos.views.gamesJSONP'),
+    ('^jsonp/players', 'stats_rugbywuerenlos.views.playersJSONP'),
+    ('^jsonp/seasons', 'stats_rugbywuerenlos.views.seasonsJSONP'),
+	('^jsonp/teams', 'stats_rugbywuerenlos.views.teamsJSONP'),
+	('^jsonp/cards', 'stats_rugbywuerenlos.views.cardsJSONP'),
+	('^jsonp/leagues', 'stats_rugbywuerenlos.views.leaguesJSONP'),
+	('^jsonp/points', 'stats_rugbywuerenlos.views.pointsJSONP'),
+	('^jsonp/pointtypes', 'stats_rugbywuerenlos.views.pointtypesJSONP'),
+	('^jsonp/locations', 'stats_rugbywuerenlos.views.locationsJSONP'),
+
+   ('^REST/players/(?P<playerID>\d+)', 'stats_rugbywuerenlos.views.playersDetailJSON'),
     ('^REST/players', 'stats_rugbywuerenlos.views.playersJSON'),
-    ('^REST/games', 'stats_rugbywuerenlos.views.gamesJSON'),
+   ('^REST/games', 'stats_rugbywuerenlos.views.gamesJSON'),
     ('^REST/seasons', 'stats_rugbywuerenlos.views.seasonsJSON'),
 
 )

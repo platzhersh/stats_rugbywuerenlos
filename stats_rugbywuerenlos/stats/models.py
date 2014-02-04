@@ -40,7 +40,15 @@ class Player(models.Model):
       return str(self.get_pointsInt())
     
 #    points.short_description = 'Points made'
-    
+   
+    @property
+    def cards(self):
+      return self.get_cards()
+
+    def get_cards(self):
+      c = Card.objects.filter(player=self)
+      return c.count()
+     
     @property
     def tries(self):
       return self.get_tries() 

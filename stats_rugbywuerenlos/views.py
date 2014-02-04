@@ -1,5 +1,5 @@
 from django.conf import settings
-from stats_rugbywuerenlos.stats.models import Player, Game, Point, PointType, Season
+from stats_rugbywuerenlos.stats.models import Player, Game, Point, PointType, Season, Team, Card, League, Location
 from django.shortcuts import render_to_response
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
@@ -24,6 +24,12 @@ def playersJSON(request):
   response['Cache-Control'] = 'No-Cache'
   return response
 
+def playersJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', Player.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response
 
 def listPlayersDetail(request, playerID):
   p = Player.objects.get(id=playerID)
@@ -56,6 +62,13 @@ def gamesJSON(request):
   return response
 
 
+def gamesJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', Game.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response
+
 
 def listGamesDetail(request, gameID):
   g = Game.objects.get(id=gameID)
@@ -70,6 +83,14 @@ def logout_view(request):
   logout(request)
   return redirect('/auth/login/')
 
+def seasonsJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', Season.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response
+
+
 def seasonsJSON(request):
   data = serializers.serialize('json', Season.objects.all())
   response = HttpResponse(str(data))
@@ -80,4 +101,44 @@ def seasonsJSON(request):
   response['Cache-Control'] = 'No-Cache'
   return response
 
+def pointsJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', Point.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response
 
+def pointtypesJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', PointType.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response
+  
+def teamsJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', Team.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response
+  
+def leaguesJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', League.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response  
+  
+def cardsJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', Card.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response  
+  
+def locationsJSONP(request):
+  callback = request.GET.get('callback','f')
+  data = callback + "("+str(serializers.serialize('json', Location.objects.all()))+")"
+  response =  HttpResponse(data)
+  response['Content-Type'] = 'application/javascript; charset=utf-8'
+  return response  

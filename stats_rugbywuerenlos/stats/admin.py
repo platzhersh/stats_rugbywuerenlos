@@ -27,6 +27,8 @@ class PlayerAdmin(admin.ModelAdmin):
     search_fields = ['get_name']
 
 admin.site.register(Position)
+admin.site.register(Card)
+admin.site.register(Point)
 admin.site.register(PointType)
 admin.site.register(CardType)
 admin.site.register(League)

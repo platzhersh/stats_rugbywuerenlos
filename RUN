@@ -1,1 +1,1 @@
-PYTHONPATH=/home/platzhersh/django-stats_rugbywuerenlos:/home/platzhersh/stats_rugbywuerenlos:/home/platzhersh/stats_rugbywuerenlos/stats_rugbywuerenlos:. python manage.py runserver 127.0.0.1:62078
+PYTHONPATH=/home/platzhersh/django-stats_rugbywuerenlos:/home/platzhersh/stats_rugbywuerenlos:/home/platzhersh/stats_rugbywuerenlos/stats_rugbywuerenlos:. $HOME/v/bin/python manage.py runserver 127.0.0.1:62078

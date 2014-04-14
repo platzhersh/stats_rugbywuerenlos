@@ -24,7 +24,7 @@
       <td>{{game.date|date:"d.m.Y, G:i"}}</td>
       <td><a href="/games/{{game.id}}">{{game.opponent}}</a></td>
       <td>{{game.location}}</td>
-      {% if game.pointsO %}
+      {% if game.pointsO >= 0 and game.get_points >= 0 %}
         <td>{{game.get_points}}:{{game.pointsO}}</td>
       {% else %}
         <td>--</td>

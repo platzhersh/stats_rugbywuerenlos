@@ -5,7 +5,7 @@
 <li><a href="/games/{{game.id}}">{{game}}</a></li>
 {% endblock %}
 
-{% block jumbotron-title %}<h1>RCW vs {{game.opponent}}</h1>{% endblock %}
+{% block jumbotron-title %}<h1>RCW vs {{game.opponent}} - {{game.get_points}}:{{game.pointsO}}</h1>{% endblock %}
 
 {% block jumbotron %}
 Ort: {{game.location}}<br/>

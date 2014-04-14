@@ -103,6 +103,7 @@ class Game(models.Model):
     date = models.DateTimeField(verbose_name="KickOff")
     mom = models.ForeignKey(Player,verbose_name="Man of the Match",blank=True,null=True,related_name='mom')
     tom = models.ForeignKey(Player,verbose_name="Tackler of the Match",blank=True,null=True,related_name='tom')
+ 
 
     def get_points(self):
       p = Point.objects.filter(game=self)

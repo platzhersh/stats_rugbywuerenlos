@@ -85,11 +85,30 @@ class League(models.Model):
     def __unicode__(self):
       return self.name
 
-class Team(models.Model):
+class Association(models.Model):
+    shortName = models.CharField(max_length=10)
+    fullName = models.CharField(max_length=100)
+    website = models.CharField(max_length=200, null = True, blank = True)
+    def __unicode__(self):
+      return str(self.shortName) + ' ('+ str(self.fullName) +')'
+
+class Club(models.Model):
     name = models.CharField(max_length=50)
     website = models.CharField(max_length=200, null = True)
-    facebook = models.CharField(max_length=500, null = True, blank = True)
-    pitch = models.ForeignKey(Location)
+    logo = models.ImageField(upload_to='clubs/',blank=True,null=True)
+    facebook = models.CharField(max_length=200, null = True, blank = True)
+    twitter = models.CharField(max_length=200, null = True, blank = True)
+    association = models.ForeignKey(Association, null = True, blank = True)
+    pitch = models.ForeignKey(Location, null = True, blank = True)
+    def __unicode__(self):
+      return self.name
+
+class Team(models.Model):
+    name = models.CharField(max_length=50)
+    club = models.ForeignKey(Club, blank = True, null = True)
+    website = models.CharField(max_length=200, null = True, blank = True) #deprecated
+    facebook = models.CharField(max_length=500, null = True, blank = True) #deprecated
+    pitch = models.ForeignKey(Location, blank = True) #deprecated
     league = models.ForeignKey(League)
     def __unicode__(self):
       return self.name

@@ -127,7 +127,11 @@ def leaguesJSONP(request):
   data = callback + "("+str(serializers.serialize('json', League.objects.all()))+")"
   response =  HttpResponse(data)
   response['Content-Type'] = 'application/javascript; charset=utf-8'
-  return response  
+  return response 
+
+def listLeagues(request):
+  l = League.objects.all()
+  return render_to_response('base_leagues.html', {'page_content':l},context_instance=RequestContext(request))
   
 def cardsJSONP(request):
   callback = request.GET.get('callback','f')

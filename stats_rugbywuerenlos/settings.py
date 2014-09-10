@@ -24,6 +24,7 @@ DATABASES = {
         'PASSWORD': 'zrk.crci',
         'HOST': '',
         'PORT': '',
+        'OPTIONS'  : { 'init_command' : 'SET storage_engine=MyISAM', },
     }
 }
 

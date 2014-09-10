@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<li><a href="/leagues">Leagues</a></li>
+{% endblock %}
+
+{% block content-title %}Leagues{% endblock content-title %}
+
+{% block content %}
+
+  {% if page_content %}
+  <ul>
+    {% for league in page_content %}  
+    <li>{{ league.name }}</li>
+    {% endfor %}
+  </ul>
+
+  {% else %}
+    no leagues found
+  {% endif %}
+{% endblock content %}

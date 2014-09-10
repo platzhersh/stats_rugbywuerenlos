@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Platzh1rsch">
 
-    <title>Stats | Rugby Club W&uuml;renlos</title>
+    <title>Swiss Rugby Stats</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
@@ -40,8 +40,20 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leagues <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Liga A</a></li>
+                <li><a href="#">Liga B</a></li>
+                <li><a href="#">Liga C</a></li>
+                <li><a href="#">1. Liga Ost</a></li>
+                <li><a href="#">1. Liga West</a></li>                
+              </ul>
+            </li>
+            <li><a href="/clubs" id="clubs">Clubs</a></li>
             <li><a href="/games" id="games">Games</a></li>
             <li><a href="/players" id="players">Players</a></li>
+            <li><a href="/about" id="about">About</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -79,8 +91,12 @@
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         {% block jumbotron-img %}{% endblock %}
-        <h1>{% block jumbotron-title %}Statistics - Rugby Club W&uuml;renlos{% endblock jumbotron-title %}</h1>
-    {% block jumbotron %}Under construction{% endblock jumbotron %}
+        <h1>{% block jumbotron-title %}Swiss Rugby Stats{% endblock jumbotron-title %}</h1>
+
+        {% block jumbotron %}Under construction
+        <p>The final goal of this site is to provide an easy to use service for Swiss Rugby Clubs to create statistics about their players and games.</p>
+        <p>&copy; by <a href="http://platzh1rsch.ch">Platzh1rsch</a></p> {% endblock jumbotron %}
+
       </div>
 
       <div>
@@ -94,8 +110,9 @@
     <div style="background: #efefef; padding-top: 20px; padding-bottom: 20px;">
         <div class="container">
             <footer>
-               <p>Diese Seite soll Schweizer Rugby Clubs helfen Statistiken &uuml;ber ihre Spieler und vergangene Spiele zu erstellen. Momentan sind nur Daten des Rugby Club W&uuml;renlos vorhanden. Die Seite befindet sich noch im Aufbau.</p>
-               <p>Platzh1rsch &copy; 2013.</p>
+               Under construction
+              <p>The final goal of this site is to provide an easy to use service for Swiss Rugby Clubs to create statistics about their players and games.</p>
+              <p>&copy; by <a href="http://platzh1rsch.ch">Platzh1rsch</a></p>
             </footer>
         </div>
     </div>

@@ -1,4 +1,4 @@
-from stats_rugbywuerenlos.stats.models import Season, Game, PointType, Point, Player, League, Location, Team, CardType, Card, Position
+from stats_rugbywuerenlos.stats.models import Season, Game, PointType, Point, Player, League, Location, Team, CardType, Card, Position, Association, Club
 from django.contrib import admin
 
 class SeasonAdmin(admin.ModelAdmin):
@@ -33,6 +33,8 @@ admin.site.register(PointType)
 admin.site.register(CardType)
 admin.site.register(League)
 admin.site.register(Location)
+admin.site.register(Association)
+admin.site.register(Club)
 
 class TeamAdmin(admin.ModelAdmin):
     list_filter = ['league']

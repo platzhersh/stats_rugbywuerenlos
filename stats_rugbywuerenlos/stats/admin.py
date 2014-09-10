@@ -16,9 +16,9 @@ class CardInline(admin.TabularInline):
 
 class GameAdmin(admin.ModelAdmin):
     inlines = [PointInline,CardInline]
-    list_filter = ['season','hostteam','guestteam','location']
+    list_filter = ['season','league','hostteam','guestteam','location']
     search_fields = ['hostteam','guestteam','location']
-    list_display = ('__unicode__','hostteam','guestteam','season','date','location','get_points','pointsO')
+    list_display = ('__unicode__','hostteam','guestteam','league','season','date','location','get_points','pointsO')
  
 admin.site.register(Game, GameAdmin)
 
@@ -33,5 +33,11 @@ admin.site.register(PointType)
 admin.site.register(CardType)
 admin.site.register(League)
 admin.site.register(Location)
-admin.site.register(Team)
+
+class TeamAdmin(admin.ModelAdmin):
+    list_filter = ['league']
+    search_fields = ['name']
+    list_display = ('__unicode__','pitch','league','website','facebook')
+    
+admin.site.register(Team, TeamAdmin)
 admin.site.register(Player, PlayerAdmin)

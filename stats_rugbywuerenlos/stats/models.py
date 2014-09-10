@@ -75,7 +75,8 @@ class Player(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=120)
-    url = models.CharField(max_length=500, null = True)
+    address = models.CharField(max_length=599, null = True, blank = True)
+    url = models.CharField(max_length=500, null = True, blank = True)
     def __unicode__(self):
       return self.name
 
@@ -87,6 +88,7 @@ class League(models.Model):
 class Team(models.Model):
     name = models.CharField(max_length=50)
     website = models.CharField(max_length=200, null = True)
+    facebook = models.CharField(max_length=500, null = True, blank = True)
     pitch = models.ForeignKey(Location)
     league = models.ForeignKey(League)
     def __unicode__(self):
@@ -96,6 +98,7 @@ class Game(models.Model):
     season = models.ForeignKey(Season,verbose_name="Season")
     hostteam = models.ForeignKey(Team,verbose_name="Host",related_name="hostteam_set")
     guestteam = models.ForeignKey(Team,verbose_name="Guest",related_name="guestteam_set")
+    league = models.ForeignKey(League,verbose_name="League")
     opponent = models.CharField(max_length=50,verbose_name="Opponent")
     location = models.CharField(max_length=50,verbose_name="Location")
     homegame = models.BooleanField(default=False,verbose_name="Homegame?")
